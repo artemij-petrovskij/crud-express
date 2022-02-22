@@ -4,6 +4,8 @@ import swaggerUI from "swagger-ui-express"
 import swaggerJSDoc from "swagger-jsdoc"
 import router from './routes/todo.routes'
 
+const cors = require('cors')
+
 const swaggerOptions = {
     definition: {
         openapi: "3.0.0",
@@ -25,6 +27,7 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 const PORT = process.env.PORT || 3000;
 const app = express()
 
+app.use(cors())
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use(bodyParser.json())
@@ -32,7 +35,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.json())
-app.use('/',(req, res)=>{
+app.use('/', (req, res) => {
     res.send('main page')
 })
 app.use('/v1', router)

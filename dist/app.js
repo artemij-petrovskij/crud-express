@@ -8,6 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 const todo_routes_1 = __importDefault(require("./routes/todo.routes"));
+const cors = require('cors');
 const swaggerOptions = {
     definition: {
         openapi: "3.0.0",
@@ -27,6 +28,7 @@ const swaggerOptions = {
 const swaggerSpec = (0, swagger_jsdoc_1.default)(swaggerOptions);
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
+app.use(cors());
 app.use('/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerSpec));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({
