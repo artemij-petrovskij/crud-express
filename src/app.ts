@@ -25,12 +25,16 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 const PORT = process.env.PORT || 3000;
 const app = express()
 
+
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.json())
+app.use('/',(req, res)=>{
+    res.send('main page')
+})
 app.use('/v1', router)
 
 app.listen(PORT, () => {

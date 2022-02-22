@@ -33,6 +33,9 @@ app.use(body_parser_1.default.urlencoded({
     extended: true
 }));
 app.use(express_1.default.json());
+app.use('/', (req, res) => {
+    res.send('main page');
+});
 app.use('/v1', todo_routes_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

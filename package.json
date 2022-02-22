@@ -7,8 +7,7 @@
     "start": "node ./dist/app.js",
     "dev:ts": "tsc -w",
     "dev:js": "nodemon ./dist/app.js",
-    "dev": "concurrently npm:dev:*",
-    "build": "tsc -p ."
+    "dev": "concurrently npm:dev:*"
   },
   "keywords": [],
   "author": "",
