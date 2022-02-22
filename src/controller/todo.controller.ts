@@ -12,8 +12,15 @@ interface Task {
 class TaskController implements Task {
     async getTasks(req: Request, res: Response): Promise<any> {
 
-        const allTaskQuery = await pool.query('SELECT * FROM tasks ORDER BY id;')
-        res.status(200).json(allTaskQuery.rows)
+        try {
+            const allTaskQuery = await pool.query('SELECT * FROM tasks ORDER BY id;')
+            res.status(200).json(allTaskQuery.rows)
+        }
+        catch (err) {
+            console.error(`Server error ` + err)
+            res.status(500)
+
+        }
 
     }
 

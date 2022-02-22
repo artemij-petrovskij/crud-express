@@ -18,8 +18,14 @@ const date_1 = __importDefault(require("../custom-functions/date"));
 class TaskController {
     getTasks(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const allTaskQuery = yield psql_connection_1.default.query('SELECT * FROM tasks ORDER BY id;');
-            res.status(200).json(allTaskQuery.rows);
+            try {
+                const allTaskQuery = yield psql_connection_1.default.query('SELECT * FROM tasks ORDER BY id;');
+                res.status(200).json(allTaskQuery.rows);
+            }
+            catch (err) {
+                console.error(`Server error ` + err);
+                res.status(500);
+            }
         });
     }
     createTask(req, res) {

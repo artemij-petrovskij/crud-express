@@ -35,9 +35,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.json())
-app.use('/', (req, res) => {
-    res.send('main page')
-})
+
 app.use('/v1', router)
 
 app.listen(PORT, () => {
